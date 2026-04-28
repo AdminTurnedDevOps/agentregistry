@@ -6,7 +6,6 @@ import { useTheme } from "next-themes"
 import { useSyncExternalStore } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 
 export function Navigation() {
   const pathname = usePathname()
@@ -23,15 +22,24 @@ export function Navigation() {
   return (
     <nav className="border-b bg-background sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        <div className="flex items-center gap-10 h-14">
-          <Link href="/" className="flex items-center shrink-0 rounded-md px-2 py-1">
-            <Image
-              src={mounted && theme === "dark" ? "/logo-dark.svg" : "/logo-light.svg"}
-              alt="Agent Registry"
-              width={180}
-              height={60}
-              className="h-12 w-auto"
-            />
+        <div className="flex items-center gap-8 h-14">
+          <Link
+            href="/"
+            className="flex items-center shrink-0 rounded-md px-2 py-1"
+            aria-label="Solo Enterprise for agentregistry"
+          >
+            <span className="flex flex-col items-end justify-center leading-none text-foreground">
+              <span className="text-[11px] font-medium uppercase tracking-[0.28em]">
+                Solo Enterprise
+              </span>
+              <span className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.28em]">
+                For
+              </span>
+            </span>
+            <span className="mx-4 h-9 w-px bg-foreground" aria-hidden="true" />
+            <span className="whitespace-nowrap text-[30px] font-bold leading-none text-primary">
+              agentregistry
+            </span>
           </Link>
 
           <div className="flex items-center gap-1">
@@ -54,6 +62,16 @@ export function Navigation() {
               }`}
             >
               Deployed
+            </Link>
+            <Link
+              href="/gateways"
+              className={`relative px-3 py-1.5 text-[15px] font-medium transition-colors ${
+                isActive("/gateways")
+                  ? "text-foreground after:absolute after:bottom-[-13px] after:left-1 after:right-1 after:h-[2px] after:bg-primary after:rounded-full"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Gateways
             </Link>
           </div>
 
